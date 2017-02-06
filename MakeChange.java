@@ -18,21 +18,30 @@ public class MakeChange {
 		System.out.println("Enter the amount you will be paying the cashier for the item. ");
 		payment = kb.nextDouble();
 		
+		change = (int) ((payment - price)*100);
+		System.out.println(change);
+		
+		change = (payment - price);
+		
 		if (payment < price) {
 			System.out.println("That amount is not enough to pay for the item. ");
 		}
-		else if (payment == price) {
+		if (payment == price) {
 			System.out.println("That is the exact amount needed to pay for the item.");
 		}
 		
 		DecimalFormat dec = new DecimalFormat("#.00");
-		
-		change = (payment - price);
 		changestring = (dec.format(change));
-		tens = changestring.charAt(0);
-		ones = changestring.charAt(1);
-		tenths = changestring.charAt(3);
-		hundreths = changestring.charAt(4);
+		System.out.println(changestring);
+		if(changestring.length()>=5){
+		tens = changestring.charAt(changestring.length()-5);
+		}
+		if(changestring.length()>=4){
+
+		ones = changestring.charAt(changestring.length()-4);
+		}
+		tenths = changestring.charAt(changestring.length()-2);
+		hundreths = changestring.charAt(changestring.length()-1);
 		
 		if (tens == '2') {
 			dollar20 = 1;
@@ -524,7 +533,6 @@ public class MakeChange {
 		if (tenths == '0' && hundreths == '1') {
 			coin4 = 1;
 		}
-
 		if(payment > price) {
 			System.out.println("That is more than the cost of the item.");
 			System.out.println("Your change is: " + change + " You will receive: ");
